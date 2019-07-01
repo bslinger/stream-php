@@ -24,12 +24,19 @@ class Feed extends BaseFeed
      */
     protected $httpRequestHeaders = [];
 
+
+    /** @var HandlerStack\ */
+    protected $handlerStack;
+
     /**
      * @return \GuzzleHttp\HandlerStack
      */
     public function getHandlerStack()
     {
-        return HandlerStack::create();
+        if (!$this->handlerStack) {
+            $this->handlerStack = HandlerStack::create();
+        }
+        return $this->handlerStack;
     }
 
     /**
